@@ -1,0 +1,25 @@
+export NCCL_DEBUG=INFO
+deepspeed  \
+    --hostfile=./hostfile \
+    --include="" \
+    finetune_trainer.py \
+    --data_dir=./data \
+    --train_name=train \
+    --output_dir=./save_model \
+    --save_total_limit=10 \
+    --per_device_train_batch_size=2 \
+    --per_device_eval_batch_size=1 \
+    --num_train_epochs=1 \
+    --logging_steps=5 \
+    --model_name_or_path=./model/LongLM-base \
+    --learning_rate=1e-4 \
+    --n_val=100 \
+    --n_test=-1 \
+    --do_eval \
+    --fp16 \
+    --overwrite_output_dir \
+    --evaluation_strategy=steps \
+    --eval_steps=100 \
+    --load_best_model_at_end \
+    --gradient_accumulation_steps 4 \
+    --deepspeed ./ds_zero2_config_st.json
