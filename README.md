@@ -1,10 +1,24 @@
 # LongLM-Eyas
 
-IIE-NLP-Eyas@COSG: Chinese Outline-guided Story Generation via a Progressive Plot-Event-Story Framework
+**IIE-NLP-Eyas@OutGen: Chinese Outline-guided Story Generation via a Progressive Plot-Event-Story Framework** [[PDF]()]
 
-## Implement Details
+**Team Members:** *Yuqiang Xie, Yunpeng Li, Wei Peng, Ping Guo and Luxi Xing.* 
 
-### How to use:
+**Org.:** Institute of Information Engineering, Chinese Academy of Sciences, Beijing, China.
+
+**Codes are contributed by:**
+- Yuqiang Xie (Baselines, Data Pre-processing, Event Generation)
+- Yunpeng Li (Event Ranking)
+- Wei Peng (LCS).
+
+## Plot-Event-Story (PES)
+
+**Outline:**
+- Plot (Step 1-2)
+- Event (Step 3-4)
+- Story (Step 5-8)
+
+### A Simple Guide:
 
 #### Step 1:
 
@@ -12,7 +26,7 @@ convert train/val/test.jsonl into events of each plot
 
 `python split_kw_sent.py`
 
-Thus, we get train/val/test_split.jsonl
+-> train/val/test_split.jsonl
 
 #### Step 2:
 
@@ -20,7 +34,7 @@ convert train/val/test_split.jsonl into bart format (source and target)
 
 `python convert_bartio.py`
 
-Thus, we get train/val/test.source/target
+-> train/val/test.source/target
 
 #### Step 3:
 
@@ -36,7 +50,7 @@ Generating stories by Top-p sampling:
 
 `python gen.py`
 
-Thus, we get result_of_val/test.txt
+-> result_of_val/test.txt
 
 #### Step 5:
 
@@ -44,7 +58,7 @@ convert each event into one line with ‘/t’ splitting
 
 `python event2data.py`
 
-Thus, we get result4rank_of_val/test.txt
+-> result4rank_of_val/test.txt
 
 #### Step 6:
 
@@ -52,17 +66,16 @@ perform ranking
 
 `python outline_reranking.py`
 
-train/val_reranking.jsonl
+-> train/val_reranking.jsonl
 
 `python process_nsp_data.py`
 
-train/val_nsp.txt
+-> train/val_nsp.txt
 
 `python story_nsp.py`
 
-rerank_test.txt
+-> rerank_test.txt
 
-Thus, we get result_ranked_of_val/test.txt
 
 #### Step 7:
 
@@ -70,17 +83,21 @@ del repetitive words
 
 `python data4lcs.py`
 
+-> result4lcs.txt
+
 `python lrc.py`
 
-Thus, we get result4lcs.txt, final_result.txt
+-> final_result.txt
+
 
 #### Step 8:
 
 `python source2jsonl.py`
 
-Finally, we get the submission.jsonl
+-> submission.jsonl
 
-### Parameters:
+
+### Parameters for Baselines and Event Generation:
 
 ```
 learning rate: 3e-5
