@@ -40,7 +40,7 @@ Thus, we get result_of_val/test.txt
 
 #### Step 5:
 
-convert each event into one line with ‘/t’ spliting
+convert each event into one line with ‘/t’ splitting
 
 `python event2data.py`
 
@@ -50,13 +50,23 @@ Thus, we get result4rank_of_val/test.txt
 
 perform ranking
 
-`bash ranking.sh`
+`python outline_reranking.py`
 
-Thus, we get result4ranked_of_val/test.txt
+train/val_reranking.jsonl
+
+`python process_nsp_data.py`
+
+train/val_nsp.txt
+
+`python story_nsp.py`
+
+rerank_test.txt
+
+Thus, we get result_ranked_of_val/test.txt
 
 #### Step 7:
 
-del repeative words
+del repetitive words
 
 `python data4lcs.py`
 

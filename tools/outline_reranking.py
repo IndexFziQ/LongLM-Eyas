@@ -19,15 +19,14 @@ def read_jsonl(input_file):
             lines.append(instance)
     return lines
 
-file_path = '/home/yuqiang.xyq/LongLM/datasets/chn/data/final/test'
+file_path = './data'
 # set source: train/valid/test.jsonl
-cases = read_jsonl(file_path+'/test.jsonl')
-
-
+cases = read_jsonl(file_path+'/train.jsonl')
 
 # set target: train/val/test.source or target
-with open(file_path+'/test.source','w', encoding='utf-8') as train_source,\
-    open(file_path+'/test.target','w', encoding='utf-8') as train_target:
+with open(file_path+'/train_split.source','w', encoding='utf-8') as source,\
+    open(file_path+'/train_split.target','w', encoding='utf-8') as target,\
+    open(file_path+'/train_split.jsonl','w', encoding='utf-8') as split_data:
     for feature in cases:
         outline = json.dumps(feature['outline'], ensure_ascii=False)
         outline = outline.replace('[','')
@@ -45,6 +44,8 @@ with open(file_path+'/test.source','w', encoding='utf-8') as train_source,\
             keys.append(key[0])
         outline = '#'.join(keys)
 
-        train_source.write(outline + '<extra_id_1>' + '\n')
-        train_target.write('<extra_id_1>'+ story + '\n')
+        source.write(outline + '<extra_id_1>' + '\n')
+        target.write('<extra_id_1>'+ story + '\n')
+        feature['outline'] = keys
+        split_data.write(json.dumps(feature, ensure_ascii=False)+ '\n')
 

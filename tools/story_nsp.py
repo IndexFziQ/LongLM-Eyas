@@ -219,7 +219,7 @@ if __name__ == '__main__':
         train(config.epochs, model, train_loader, optimizer, criterion, device, tokenizer, config)
     else:
         inference_file_path = 'result4rank_of_val/test.txt'
-        output_file_path = 'result4rank_of_val/rerank_test.txt'
+        output_file_path = 'result4rank_of_val/result_ranked_test.txt'
         model_save_path = 'bert.pth'
         if(os.path.exists(model_save_path)):
             print('Existing finetuned nsp model, load it!')
