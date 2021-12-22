@@ -1,6 +1,8 @@
 # LongLM-Eyas
 
-## IIE-NLP-Eyas@COSG Implement Details
+IIE-NLP-Eyas@COSG: Chinese Outline-guided Story Generation via a Progressive Plot-Event-Story Framework
+
+## Implement Details
 
 ### How to use:
 
@@ -67,6 +69,16 @@ Thus, we get result4lcs.txt, final_result.txt
 `python source2jsonl.py`
 
 Finally, we get the submission.jsonl
+
+### Parameters:
+
+```
+learning rate: 3e-5
+epoch: {5, 10}
+top-k: K=40
+K's temperature: 0.9
+batch size: 8
+```
  
 ## Acknowledgement
 
