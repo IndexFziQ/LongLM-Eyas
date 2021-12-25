@@ -24,7 +24,7 @@
 
 convert train/val/test.jsonl into events of each plot
 
-`python split_kw_sent.py`
+`python ./tools/split_kw_sent.py`
 
 -> train/val/test_split.jsonl
 
@@ -32,7 +32,7 @@ convert train/val/test.jsonl into events of each plot
 
 convert train/val/test_split.jsonl into bart format (source and target)
 
-`python convert_bartio.py`
+`python ./tools/convert_bartio.py`
 
 -> train/val/test.source/target
 
@@ -40,7 +40,7 @@ convert train/val/test_split.jsonl into bart format (source and target)
 
 Train/Eval/Test using LongLM-small model
 
-`bash finetune_deepspeed_iie.sh`
+`bash ./longlm/finetune_deepspeed_iie.sh`
 
 The best model will be in ./save_model
 
@@ -48,7 +48,7 @@ The best model will be in ./save_model
 
 Generating stories by Top-p sampling:
 
-`python gen.py`
+`python ./baselines/generation/gen.py`
 
 -> result_of_val/test.txt
 
@@ -56,7 +56,7 @@ Generating stories by Top-p sampling:
 
 convert each event into one line with ‘/t’ splitting
 
-`python event2data.py`
+`python ./tools/event2data.py`
 
 -> result4rank_of_val/test.txt
 
@@ -64,15 +64,15 @@ convert each event into one line with ‘/t’ splitting
 
 perform ranking
 
-`python outline_reranking.py`
+`python ./tools/outline_reranking.py`
 
 -> train/val_reranking.jsonl
 
-`python process_nsp_data.py`
+`python ./tools/process_nsp_data.py`
 
 -> train/val_nsp.txt
 
-`python story_nsp.py`
+`python ./tools/story_nsp.py`
 
 -> rerank_test.txt
 
@@ -81,18 +81,18 @@ perform ranking
 
 del repetitive words
 
-`python data4lcs.py`
+`python ./tools/data4lcs.py`
 
 -> result4lcs.txt
 
-`python lrc.py`
+`python ./tools/lrc.py`
 
 -> final_result.txt
 
 
 #### Step 8:
 
-`python source2jsonl.py`
+`python ./tools/source2jsonl.py`
 
 -> submission.jsonl
 
